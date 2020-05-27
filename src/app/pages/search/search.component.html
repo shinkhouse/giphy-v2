@@ -1,0 +1,17 @@
+<mat-toolbar color="primary" class="mat-elevation-z1">
+    Giphy
+    <div fxFlex></div>
+    <app-search-field (queryChange)="getSearchResults($event)" [value]="query"></app-search-field>
+    <div fxFlex></div>
+</mat-toolbar>
+
+<!-- {{ searchResults | json }} -->
+<div class="container">
+    <ngx-masonry [options]="masonryOptions">
+        <ng-container *ngIf="searchResults && searchResults.data.length > 0">
+            <div ngxMasonryItem class="masonry-item" *ngFor="let item of searchResults.data">
+                <img class="grid-item" [src]="item.images.downsized_large.url" [alt]="item.title" />
+            </div>
+        </ng-container>
+    </ngx-masonry>
+</div>

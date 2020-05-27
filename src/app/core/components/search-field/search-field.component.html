@@ -1,0 +1,7 @@
+<div class="search-field">
+    <button mat-icon-button>
+        <mat-icon>search</mat-icon>
+    </button>
+    <input [(ngModel)]="query" (ngModelChange)="queryChanged()"
+    type="text" placeholder="Search">
+</div>

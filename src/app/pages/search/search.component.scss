@@ -1,0 +1,14 @@
+.container {
+    width: 1000px; 
+    margin: 0 auto;
+    ngx-masonry {
+
+        .masonry-item {
+            width: calc(20% - 10px);
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+}

@@ -1,9 +1,11 @@
 {
-  "name": "giphy",
-  "version": "0.0.0",
+  "name": "giphy-v2",
+  "author": "Samuel Hinkhouse",
+  "description": "Web application for searching, saving, and favoriting gifs via Giphy api.",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --host=0.0.0.0",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -12,13 +14,18 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.1.0",
+    "@angular/cdk": "^9.2.4",
     "@angular/common": "~9.1.0",
     "@angular/compiler": "~9.1.0",
     "@angular/core": "~9.1.0",
+    "@angular/flex-layout": "^9.0.0-beta.31",
     "@angular/forms": "~9.1.0",
+    "@angular/material": "^9.2.4",
     "@angular/platform-browser": "~9.1.0",
     "@angular/platform-browser-dynamic": "~9.1.0",
     "@angular/router": "~9.1.0",
+    "masonry-layout": "^4.2.2",
+    "ngx-masonry": "^9.2.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
