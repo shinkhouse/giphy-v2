@@ -1,8 +1,7 @@
-.container {
-    width: 1000px; 
-    margin: 0 auto;
-    ngx-masonry {
 
+    ngx-masonry {
+        margin-top: 5px;
+        
         .masonry-item {
             width: calc(20% - 10px);
 
@@ -11,4 +10,7 @@
             }
         }
     }
+.container {
+    width: 1000px; 
+    margin: 0 auto;
 }

@@ -1,0 +1,57 @@
+mat-dialog-content {
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+
+    mat-toolbar {
+        position: relative;
+        z-index: 1;
+        color: white;
+
+        div.title {
+            position: relative;
+            width: calc(100% - 24px);
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font-size: 14px;
+        }
+    }
+    .mat-toolbar:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    .mat-toolbar:before {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.87), transparent) !important;
+        filter: blur(20px);
+    }
+    .mat-toolbar {
+        background: inherit;
+    }
+
+    .mat-toolbar:before {
+        background: inherit;
+    }
+
+    img {
+        height: 100%;
+        width: 100%;
+        top: 0px;
+        left: 0px;
+        position: absolute;
+    }
+
+    .image-viewer-actions {
+        width: 100%;
+        padding: 16px;
+        position: absolute;
+        top: 55%;
+        transform: translateY(-50px);
+    }
+}

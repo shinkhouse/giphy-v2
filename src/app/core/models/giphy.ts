@@ -9,7 +9,7 @@ export class GiphySearchItem implements Deserializable {
     content_url: string;
     embed_url: string;
     id: string;
-    images: object;
+    images: any;
     import_datetime: string;
     is_sticker: number;
     rating: string;

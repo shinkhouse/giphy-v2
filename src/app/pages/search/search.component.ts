@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { NgxMasonryComponent, NgxMasonryOptions } from 'ngx-masonry';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { ImageViewerComponent } from 'src/app/core/components/image-viewer/image-viewer.component';
 
 @Component({
     selector: 'app-search',
@@ -11,16 +13,14 @@ import { Location } from '@angular/common';
     styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
-    constructor(private giphy: GiphyService, private route: ActivatedRoute, private router: Router, private location: Location) {}
+    constructor(private giphy: GiphyService, private route: ActivatedRoute, private router: Router, private location: Location, private dialog: MatDialog) {}
 
     public searchResults: any;
     public masonryOptions: NgxMasonryOptions = {
-        gutter: 5,
-        // columnWidth: 200,
+        horizontalOrder: true,
+        gutter: 4,
         itemSelector: '.masonry-item',
-        // fitWidth: true,
         resize: true,
-        // initLayout: true,
     };
     public query: string;
 
@@ -29,12 +29,12 @@ export class SearchComponent implements OnInit {
     private queryParamsSubscription: Subscription;
 
     ngOnInit(): void {
-        this.queryParamsSubscription = this.route.queryParamMap.subscribe(queryParamMap => {
-          const querySearchParam = queryParamMap.get('q');
-          if(querySearchParam) {
-            this.query = queryParamMap.get('q');
-            this.getSearchResults(this.query);
-          }
+        this.queryParamsSubscription = this.route.queryParamMap.subscribe((queryParamMap) => {
+            const querySearchParam = queryParamMap.get('q');
+            if (querySearchParam) {
+                this.query = queryParamMap.get('q');
+                this.getSearchResults(this.query);
+            }
         });
     }
 
@@ -51,8 +51,8 @@ export class SearchComponent implements OnInit {
             (res) => {
                 this.searchResults = res;
                 this.masonry.reloadItems();
-                this.masonry.layout();
                 this.changeQueryParam(q);
+                this.masonry.layout();
             },
             (err) => {
                 console.error(err);
@@ -60,7 +60,23 @@ export class SearchComponent implements OnInit {
         );
     }
 
+    openImageViewer(images, selectedImage) {
+        console.log(images.data[selectedImage].images.original);
+        const dialogRef = this.dialog
+            .open(ImageViewerComponent, {
+                panelClass: 'image-viewer',
+                minWidth: '400px',
+                width: `${images.data[selectedImage].images.original.width}px`,
+                height: `${images.data[selectedImage].images.original.height}px`,
+                data: {
+                    imagesArr: images,
+                    selected: selectedImage,
+                },
+            })
+            .addPanelClass('image-viewer');
+    }
+
     changeQueryParam(query) {
-      this.location.go('/', `?q=${query}`);
+        this.location.go('/', `?q=${query}`);
     }
 }

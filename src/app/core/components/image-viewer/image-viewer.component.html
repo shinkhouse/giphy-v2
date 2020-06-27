@@ -1,7 +1,29 @@
 <mat-dialog-content>
     <mat-toolbar>
-        <mat-toolbar-row>{{ displayedImage.title }}</mat-toolbar-row>
+        <mat-toolbar-row>
+            <div class="title">{{ displayedImage.title }}</div>
+            <div fxFlex></div>
+            <button mat-icon-button (click)="saveImage(displayedImage.images.original.url, displayedImage.title, 'gif')">
+                <mat-icon>save_alt</mat-icon>
+            </button>
+            <button mat-icon-button (click)="closeDialog()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-toolbar-row>
     </mat-toolbar>
-
-    <pre>{{ displayedImage | json }}</pre>
+    <img [src]="displayedImage.images.original.url" [alt]="displayedImage.title">
+    <div class="image-viewer-actions">
+        <div fxLayout="row">
+            <button mat-mini-fab (click)="previousImage()" [disabled]="!canSelectPreviousImage()">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+            
+        <div fxFlex></div>
+        <button mat-mini-fab (click)="nextImage()" [disabled]="!canSelectNextImage()">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+        </div>
+        
+    </div>
+    <!-- <pre>{{ displayedImage | json }}</pre> -->
 </mat-dialog-content>

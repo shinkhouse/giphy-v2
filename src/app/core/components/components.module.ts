@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { SearchFieldModule } from './search-field/search-field.module';
+import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
+import { ScrollToTopModule } from './scroll-to-top/scroll-to-top.module';
 
 
 @NgModule({
@@ -13,10 +15,13 @@ import { SearchFieldModule } from './search-field/search-field.module';
     FormsModule,
     MatIconModule,
     MatButtonModule,
-    SearchFieldModule
+    SearchFieldModule,
+    ScrollToTopModule
   ],
   exports: [
-    SearchFieldModule
-  ]
+    SearchFieldModule,
+    ScrollToTopModule
+  ],
+  declarations: []
 })
 export class ComponentsModule { }

@@ -6,12 +6,13 @@
 </mat-toolbar>
 
 <!-- {{ searchResults | json }} -->
-<div class="container">
-    <ngx-masonry [options]="masonryOptions">
+<!-- <div class="container"> -->
+    <ngx-masonry #masonry [options]="masonryOptions">
         <ng-container *ngIf="searchResults && searchResults.data.length > 0">
-            <div ngxMasonryItem class="masonry-item" *ngFor="let item of searchResults.data">
-                <img class="grid-item" [src]="item.images.downsized_large.url" [alt]="item.title" />
+            <div ngxMasonryItem class="masonry-item" (click)="openImageViewer(searchResults, i)" *ngFor="let item of searchResults.data; let i = index">
+                <img [src]="item.images.downsized_large.url" [alt]="item.title" />
             </div>
         </ng-container>
     </ngx-masonry>
-</div>
+<!-- </div> -->
+<app-scroll-to-top></app-scroll-to-top>

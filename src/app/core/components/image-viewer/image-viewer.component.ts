@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { GiphySearchResponse, GiphySearchItem } from '../../models/giphy';
+import { ImageService } from '../../services/image.service';
 
 @Component({
     selector: 'app-image-viewer',
@@ -12,7 +13,7 @@ export class ImageViewerComponent implements OnInit {
     public selectedImage: number;
     public displayedImage: GiphySearchItem;
 
-    constructor(private dialogRef: MatDialogRef<ImageViewerComponent>, @Inject(MAT_DIALOG_DATA) data) {
+    constructor(private dialogRef: MatDialogRef<ImageViewerComponent>, @Inject(MAT_DIALOG_DATA) data, private image: ImageService) {
         console.log(data, data.imagesArr, data.selectedImage);
         this.images = data.imagesArr;
         this.selectedImage = data.selected;
@@ -24,23 +25,25 @@ export class ImageViewerComponent implements OnInit {
 
     previousImage() {
         if (this.canSelectPreviousImage()) {
-            this.selectedImage = this.selectedImage--;
+            this.selectedImage = this.selectedImage - 1;
             this.displayedImage = this.images.data[this.selectedImage];
+            this.dialogRef.updateSize(this.displayedImage.images.original.width, this.displayedImage.images.original.height);
         }
     }
 
     nextImage() {
         if (this.canSelectNextImage()) {
-            this.selectedImage = this.selectedImage++;
+            this.selectedImage = this.selectedImage + 1;
             this.displayedImage = this.images.data[this.selectedImage];
+            this.dialogRef.updateSize(this.displayedImage.images.original.width, this.displayedImage.images.original.height);
         }
     }
 
-    canSelectPreviousImage() {
+    canSelectPreviousImage(): boolean {
         return this.selectedImage !== 0;
     }
 
-    canSelectNextImage() {
+    canSelectNextImage(): boolean {
         return this.selectedImage !== this.images.data.length - 1;
     }
 
@@ -48,13 +51,7 @@ export class ImageViewerComponent implements OnInit {
         this.dialogRef.close();
     }
 
-    saveImage(url, fileName) {
-        const a: any = document.createElement('a');
-        a.href = url;
-        a.download = fileName;
-        document.body.appendChild(a);
-        a.style = 'display: none';
-        a.click();
-        a.remove();
+    saveImage(url, fileName, fileType) {
+        this.image.getImageAndDownload(url, fileName, fileType);
     }
 }

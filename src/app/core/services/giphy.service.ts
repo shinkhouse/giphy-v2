@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { giphy } from '../../../environments/environment';
 import { map } from 'rxjs/operators';
 import { GiphySearchResponse } from '../models/giphy';
@@ -14,13 +14,14 @@ export class GiphyService {
     constructor(private http: HttpClient) {}
 
     getSearchResults(params) {
-        const queryParams = {
-            q: params.query,
-            api_key: apiKey,
-        };
+        let queryParams: HttpParams = new HttpParams();
+
+        queryParams = queryParams.append('q', params.query);
+        queryParams = queryParams.append('api_key', apiKey);
+        queryParams = queryParams.append('limit', '50');
 
         return this.http
-            .get(`${baseUrl}/gifs/search`, { params: queryParams })
+            .get<any>(`${baseUrl}/gifs/search`, {params: queryParams})
             .pipe(map((res: any) => new GiphySearchResponse().deserialize(res)));
     }
 }
