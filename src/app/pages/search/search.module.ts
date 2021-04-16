@@ -7,6 +7,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { ComponentsModule } from 'src/app/core/components/components.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxMasonryModule } from 'ngx-masonry';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
   {
@@ -25,7 +27,9 @@ const routes: Routes = [
         MatToolbarModule,
         FlexLayoutModule,
         ComponentsModule,
-        NgxMasonryModule
+        NgxMasonryModule,
+        MatButtonModule,
+        MatIconModule
     ],
 })
 export class SearchModule {}

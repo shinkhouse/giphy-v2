@@ -3,14 +3,20 @@
     <div fxFlex></div>
     <app-search-field (queryChange)="getSearchResults($event)" [value]="query"></app-search-field>
     <div fxFlex></div>
+    <!-- <button mat-icon-button (click)="toggleFavorites()">
+        <mat-icon>favorite</mat-icon>
+    </button> -->
 </mat-toolbar>
 
 <!-- {{ searchResults | json }} -->
 <!-- <div class="container"> -->
-    <ngx-masonry #masonry [options]="masonryOptions">
-        <ng-container *ngIf="searchResults && searchResults.data.length > 0">
-            <div ngxMasonryItem class="masonry-item" (click)="openImageViewer(searchResults, i)" *ngFor="let item of searchResults.data; let i = index">
-                <img [src]="item.images.downsized_large.url" [alt]="item.title" />
+    <ngx-masonry #masonry [options]="masonryOptions" [ordered]="true">
+        <ng-container *ngIf="searchResults && searchResults.length > 0">
+            <div ngxMasonryItem class="masonry-item" *ngFor="let item of searchResults; let i = index">
+                <img (click)="openImageViewer(searchResults, i)" [src]="item.images.downsized_large.url" [alt]="item.title" />
+                <button (click)="addToFavorites(searchResults, i)" class="favorite-button" mat-icon-button mat-raised-button>
+                    <mat-icon>{{item.favorite ? 'favorite' : 'favorite_border'}}</mat-icon>
+                </button>
             </div>
         </ng-container>
     </ngx-masonry>
