@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { GiphySearchResponse, GiphySearchItem } from '../../models/giphy';
 import { ImageService } from '../../services/image.service';
 
@@ -9,7 +10,7 @@ import { ImageService } from '../../services/image.service';
     styleUrls: ['./image-viewer.component.scss'],
 })
 export class ImageViewerComponent implements OnInit {
-    public images: GiphySearchResponse;
+    public images: GiphySearchItem[];
     public selectedImage: number;
     public displayedImage: GiphySearchItem;
 
@@ -20,13 +21,13 @@ export class ImageViewerComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.displayedImage = this.images.data[this.selectedImage];
+        this.displayedImage = this.images[this.selectedImage];
     }
 
     previousImage() {
         if (this.canSelectPreviousImage()) {
             this.selectedImage = this.selectedImage - 1;
-            this.displayedImage = this.images.data[this.selectedImage];
+            this.displayedImage = this.images[this.selectedImage];
             this.dialogRef.updateSize(this.displayedImage.images.original.width, this.displayedImage.images.original.height);
         }
     }
@@ -34,7 +35,7 @@ export class ImageViewerComponent implements OnInit {
     nextImage() {
         if (this.canSelectNextImage()) {
             this.selectedImage = this.selectedImage + 1;
-            this.displayedImage = this.images.data[this.selectedImage];
+            this.displayedImage = this.images[this.selectedImage];
             this.dialogRef.updateSize(this.displayedImage.images.original.width, this.displayedImage.images.original.height);
         }
     }
@@ -44,7 +45,7 @@ export class ImageViewerComponent implements OnInit {
     }
 
     canSelectNextImage(): boolean {
-        return this.selectedImage !== this.images.data.length - 1;
+        return this.selectedImage !== this.images.length - 1;
     }
 
     closeDialog() {
