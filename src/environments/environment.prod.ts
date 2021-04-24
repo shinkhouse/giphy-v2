@@ -4,5 +4,5 @@ export const environment = {
 
 export const giphy = {
     url: 'https://api.giphy.com/v1',
-    key: '<insert your api key here>',
+    key: 'Mdu2QbsH8XNrPEVj9Zzw18C8eDMIqihX',
 };
