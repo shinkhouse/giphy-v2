@@ -14,7 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     declarations: [AppComponent, ImageViewerComponent],
@@ -27,7 +27,8 @@ import { MatIconModule } from '@angular/material/icon';
         MatDialogModule,
         MatButtonModule,
         FlexLayoutModule,
-        MatIconModule
+        MatIconModule,
+        MatSnackBarModule
     ],
     providers: [],
     bootstrap: [AppComponent],
