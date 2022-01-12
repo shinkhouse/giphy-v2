@@ -24,4 +24,11 @@ export class GiphyService {
             .get<any>(`${baseUrl}/gifs/search`, {params: queryParams})
             .pipe(map((res: any) => new GiphySearchResponse().deserialize(res)));
     }
+
+    getTrendingGifs() {
+        let queryParams: HttpParams = new HttpParams();
+        queryParams = queryParams.append('limit', '50');
+
+        return this.http.get<any>(`${baseUrl}/gifs/trending`, { params: queryParams }).pipe(map((res: any) => new GiphySearchResponse().deserialize(res)));
+    }
 }
