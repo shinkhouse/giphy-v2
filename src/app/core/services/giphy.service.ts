@@ -5,7 +5,6 @@ import { map } from 'rxjs/operators';
 import { GiphySearchResponse } from '../models/giphy';
 
 const baseUrl = giphy.url;
-const apiKey = giphy.key;
 
 @Injectable({
     providedIn: 'root',
@@ -17,7 +16,6 @@ export class GiphyService {
         let queryParams: HttpParams = new HttpParams();
 
         queryParams = queryParams.append('q', params.query);
-        queryParams = queryParams.append('api_key', apiKey);
         queryParams = queryParams.append('limit', '50');
 
         return this.http

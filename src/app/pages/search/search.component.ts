@@ -39,6 +39,25 @@ export class SearchComponent implements OnInit {
                 this.getSearchResults(this.query);
             }
         });
+
+        this.getTrendingResults();
+    }
+
+    getTrendingResults() {
+        this.searchSubscription = this.giphy.getTrendingGifs().subscribe(
+            (res) => {
+                this.searchResults = res.data;
+                res.data.forEach((image) => {
+                    image.favorite = false;
+                });
+                // this.masonry.reloadItems();
+                
+                // this.masonry.layout();
+            },
+            (err) => {
+                console.error(err);
+            }
+        );
     }
 
     getSearchResults(q) {
@@ -108,5 +127,8 @@ export class SearchComponent implements OnInit {
 
     changeQueryParam(query) {
         this.location.go('/', `?q=${query}`);
+        if(query.length === 0) {
+            this.getTrendingResults();
+        }
     }
 }
