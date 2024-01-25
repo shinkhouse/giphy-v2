@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SearchFieldComponent } from './search-field/search-field.component';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import { MatLegacyButtonModule as MatButtonModule } from '@angular/material/legacy-button';
 import { SearchFieldModule } from './search-field/search-field.module';
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
 import { ScrollToTopModule } from './scroll-to-top/scroll-to-top.module';
