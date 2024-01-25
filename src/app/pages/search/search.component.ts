@@ -24,6 +24,7 @@ export class SearchComponent implements OnInit {
         gutter: 4,
         itemSelector: '.masonry-item',
         resize: true,
+        columnWidth: 375
     };
     public query: string;
 
@@ -32,6 +33,7 @@ export class SearchComponent implements OnInit {
     private queryParamsSubscription: Subscription;
 
     ngOnInit(): void {
+        this.getTrendingResults();
         this.queryParamsSubscription = this.route.queryParamMap.subscribe((queryParamMap) => {
             const querySearchParam = queryParamMap.get('q');
             if (querySearchParam) {
@@ -40,7 +42,6 @@ export class SearchComponent implements OnInit {
             }
         });
 
-        this.getTrendingResults();
     }
 
     getTrendingResults() {

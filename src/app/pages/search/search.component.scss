@@ -1,36 +1,38 @@
+:host {
+    display: block;
+}
+ngx-masonry {
+    margin-top: 8px;
 
-    ngx-masonry {
-        margin-top: 8px;
+    .masonry-item {
+        width: calc(20% - 10px);
 
-        .masonry-item {
-            width: calc(20% - 10px);
+        .favorite-button {
+            transition: opacity 0.1s cubic-bezier(0.37, 0, 0.63, 1);
+            opacity: 0;
+            pointer-events: none;
+            // display: none;
+            position: absolute;
+            right: 8px;
+            top: 8px;
+        }
 
-            .favorite-button {
-                transition: opacity .1s cubic-bezier(0.37, 0, 0.63, 1);
-                opacity: 0;
-                pointer-events: none;
-                // display: none;
-                position: absolute;
-                right: 8px;
-                top: 8px;
-            }
-
-            &:hover {
-                transition: opacity .1s cubic-bezier(0.37, 0, 0.63, 1);
-                & .favorite-button {
-                    color: red;
-                    pointer-events:initial;
-                    // display: block;
-                    opacity: 1;
-                }
-            }
-
-            img {
-                width: 100%;
-                cursor: pointer;
+        &:hover {
+            transition: opacity 0.1s cubic-bezier(0.37, 0, 0.63, 1);
+            & .favorite-button {
+                color: red;
+                pointer-events: initial;
+                // display: block;
+                opacity: 1;
             }
         }
+
+        img {
+            width: 100%;
+            cursor: pointer;
+        }
     }
+}
 .container {
     width: 1000px;
     margin: 0 auto;
